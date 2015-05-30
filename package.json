@@ -1,0 +1,10 @@
+{
+  "scripts": {
+    "test": "mocha tests/lib/rules"
+  },
+  "devDependencies": {
+    "eslint": "^0.21.2",
+    "eslint-tester": "^0.7.0",
+    "mocha": "^2.2.5"
+  }
+}
