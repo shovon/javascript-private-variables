@@ -32,7 +32,9 @@ var obj = {
 
 ## Rule Modify Public Variables (no-public)
 
-With public member variables, and having external classes modify the member, it becomes difficult to track down what was it that modified the value. The best thing to do is to avoid public variables altogether and use either getter and setter methods, or use [JavaScript getters and setters](http://ejohn.org/blog/javascript-getters-and-setters/).
+With public member variables, and having external classes modify the member, it becomes difficult to track down what was it that modified the value. The best thing to do is to avoid public variables altogether and use getter and setter methods.
+
+However, this rule fails to handle the case when a specific assignment expression represents the assignment to a [JavaScript setter](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/set).
 
 ## Rule Details
 
@@ -52,4 +54,18 @@ class SomeClass {
 }
 ```
 
-The followign
+The following are not warnings:
+
+```javascript
+var obj = {
+  foo: function () {
+    this._somePublicVar = 10;
+  }
+};
+
+class SomeClass {
+  constructor() {
+    this._somePublicVar = 10;
+  }
+}
+```
