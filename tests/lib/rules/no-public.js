@@ -14,7 +14,33 @@ eslintTester.addRuleTest('lib/rules/no-public', {
         '}',
       '};',
       'obj.method();'
-    ].join('')
+    ].join(''),
+
+    {
+      code: [
+        'class Foo {',
+        '  get something() { return this._something; }',
+        '  set something(x) { this._something = x; }',
+        '  doSomething() {',
+        '    this.something = 10;',
+        '  }',
+        '}'
+      ].join('\n'),
+      parser: 'babel-eslint'
+    },
+
+    {
+      code: [
+        'var foo = {',
+        '  get something() { return this._something; },',
+        '  set something(x) { this._something = x; },',
+        '  doSomething() {',
+        '    this.something = 10;',
+        '  }',
+        '}'
+      ].join('\n'),
+      parser: 'babel-eslint'
+    }
   ],
 
   invalid: [

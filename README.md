@@ -23,18 +23,19 @@ The following patterns are not warnings:
 
 ```javascript
 var obj = {
-  value: 42,
+  publicValue: 10,
+  _value: 42,
   prop: function () {
-    return this.value;
+    return this._value;
   }
 };
+
+obj.publicValue;
 ```
 
 ## Rule Modify Public Variables (no-public)
 
 With public member variables, and having external classes modify the member, it becomes difficult to track down what was it that modified the value. The best thing to do is to avoid public variables altogether and use getter and setter methods.
-
-However, this rule fails to handle the case when a specific assignment expression represents the assignment to a [JavaScript setter](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/set).
 
 ## Rule Details
 
