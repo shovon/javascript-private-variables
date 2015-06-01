@@ -22,6 +22,12 @@ eslintTester.addRuleTest('lib/rules/no-access', {
       'self._something;'
     ].join('\n'),
 
+    [
+      'var self = this;',
+      'var yetAnother = "foo";',
+      'self._something;'
+    ].join('\n'),
+
     // [
     //   'var self = this;',
     //   'if (true) {',
