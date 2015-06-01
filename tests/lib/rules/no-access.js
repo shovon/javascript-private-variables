@@ -51,17 +51,23 @@ eslintTester.addRuleTest('lib/rules/no-access', {
       '}'
     ].join('\n'),
 
-    // [
-    //   'var foo = "troll";',
-    //   'foo = this;',
-    //   'foo._somethingPrivate;'
-    // ].join('\n'),
+    [
+      'var foo = "troll";',
+      'foo = this;',
+      'foo._somethingPrivate;'
+    ].join('\n'),
 
-    // [
-    //   'var foo = this;';
-    //   'var bar = foo;';
-    //   'bar._somethingPrivate;'
-    // ].join('\n'),
+    [
+      'var foo = this;',
+      'var bar = foo;',
+      'bar._somethingPrivate;'
+    ].join('\n'),
+
+    [
+      'var foo;',
+      'foo = this;',
+      'foo._somethingPrivate;'
+    ].join('\n'),
 
     // [
     //   'var that = this;',
