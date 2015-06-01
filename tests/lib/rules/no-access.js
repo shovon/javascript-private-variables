@@ -6,43 +6,43 @@ var ESLintTester = require('eslint-tester');
 var eslintTester = new ESLintTester(linter);
 eslintTester.addRuleTest('lib/rules/no-access', {
   valid: [
-    // 'var obj = { _someValue: "foo" };',
-    // [
-    //   'var obj = {',
-    //     '_someValue: "foo",',
-    //     'method: function () {',
-    //       'return this._someValue;',
-    //     '}',
-    //   '};',
-    //   'obj.method()'
-    // ].join(''),
+    'var obj = { _someValue: "foo" };',
+    [
+      'var obj = {',
+        '_someValue: "foo",',
+        'method: function () {',
+          'return this._someValue;',
+        '}',
+      '};',
+      'obj.method()'
+    ].join(''),
 
-    // [
-    //   'var self = this;',
-    //   'self._something;'
-    // ].join('\n'),
+    [
+      'var self = this;',
+      'self._something;'
+    ].join('\n'),
 
-    // [
-    //   'var self = this;',
-    //   'var yetAnother = "foo";',
-    //   'self._something;'
-    // ].join('\n'),
+    [
+      'var self = this;',
+      'var yetAnother = "foo";',
+      'self._something;'
+    ].join('\n'),
 
-    // [
-    //   'var self = this;',
-    //   'var yetAnother = "foo"',
-    //   'if (condition) {',
-    //   '  console.log("blah, blah")',
-    //   '}',
-    //   'self._something'
-    // ].join('\n'),
+    [
+      'var self = this;',
+      'var yetAnother = "foo"',
+      'if (condition) {',
+      '  console.log("blah, blah")',
+      '}',
+      'self._something'
+    ].join('\n'),
 
-    // [
-    //   'foo(function () {',
-    //   '  var self = this;',
-    //   '  self._something',
-    //   '});'
-    // ].join('\n'),
+    [
+      'foo(function () {',
+      '  var self = this;',
+      '  self._something',
+      '});'
+    ].join('\n'),
 
     [
       'var self = this;',
