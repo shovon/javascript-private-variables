@@ -112,12 +112,12 @@ eslintTester.addRuleTest('lib/rules/no-access', {
       ]
     },
 
-    // {
-    //   code: 'something._value;',
-    //   errors: [
-    //     { message: 'Accessing property with leading underscore not allowed.' }
-    //   ]
-    // },
+    {
+      code: 'something._value;',
+      errors: [
+        { message: 'Accessing property "_value" of non-this identifier "something" not allowed' }
+      ]
+    },
 
     // {
     //   code: [
