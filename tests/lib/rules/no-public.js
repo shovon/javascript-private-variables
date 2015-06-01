@@ -1,5 +1,7 @@
 'use strict';
 
+require('babel-eslint'); // Hack to avoid slow tests.
+
 var linter = require('eslint').linter;
 var ESLintTester = require('eslint-tester');
 

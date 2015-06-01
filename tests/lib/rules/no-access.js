@@ -15,12 +15,72 @@ eslintTester.addRuleTest('lib/rules/no-access', {
         '}',
       '};',
       'obj.method()'
-    ].join('')
+    ].join(''),
+
+    [
+      'var self = this;',
+      'self._something;'
+    ].join('\n'),
+
+    [
+      'var self = this;',
+      'if (true) {',
+      '  self._something = "foo";',
+      '}'
+    ].join('\n'),
+
+    [
+      'var foo = "troll";',
+      'foo = this;',
+      'foo._somethingPrivate;'
+    ].join('\n'),
+
+    [
+      'var foo = this;';
+      'var bar = foo;';
+      'bar._somethingPrivate;'
+    ].join('\n'),
+
+    [
+      'var that = this;',
+      'setTimeout(function () {',
+      '  that._something',
+      '});'
+    ].join('\n')
   ],
 
   invalid: [
     {
       code: 'var obj = { _someValue: "foo" }; obj._someValue;',
+      errors: [
+        { message: 'Accessing property with leading underscore not allowed.' }
+      ]
+    },
+
+    {
+      code: 'something._value;',
+      errors: [
+        { message: 'Accessing property with leading underscore not allowed.' }
+      ]
+    },
+
+    {
+      code: [
+        '{',
+        '  var self = this;',
+        '}',
+        'self._somethingPrivate'
+      ].join('\n'),
+      errors: [
+        { message: 'Accessing property with leading underscore not allowed.' }
+      ]
+    },
+
+    {
+      code: [
+        'self._somethingPrivate;',
+        'var self = this;'
+      ].join('\n'),
       errors: [
         { message: 'Accessing property with leading underscore not allowed.' }
       ]
