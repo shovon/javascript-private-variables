@@ -119,26 +119,26 @@ eslintTester.addRuleTest('lib/rules/no-access', {
       ]
     },
 
-    // {
-    //   code: [
-    //     '{',
-    //     '  var self = this;',
-    //     '}',
-    //     'self._somethingPrivate'
-    //   ].join('\n'),
-    //   errors: [
-    //     { message: 'Accessing property with leading underscore not allowed.' }
-    //   ]
-    // },
+    {
+      code: [
+        '{',
+        '  var self = this;',
+        '}',
+        'self._somethingPrivate'
+      ].join('\n'),
+      errors: [
+        { message: 'Accessing property "_somethingPrivate" of non-this identifier "self" not allowed' }
+      ]
+    },
 
-    // {
-    //   code: [
-    //     'self._somethingPrivate;',
-    //     'var self = this;'
-    //   ].join('\n'),
-    //   errors: [
-    //     { message: 'Accessing property with leading underscore not allowed.' }
-    //   ]
-    // }
+    {
+      code: [
+        'self._somethingPrivate;',
+        'var self = this;'
+      ].join('\n'),
+      errors: [
+        { message: 'Accessing property "_somethingPrivate" of non-this identifier "self" not allowed' }
+      ]
+    }
   ]
 });
