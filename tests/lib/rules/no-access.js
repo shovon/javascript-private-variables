@@ -69,6 +69,13 @@ eslintTester.addRuleTest('lib/rules/no-access', {
       'foo._somethingPrivate;'
     ].join('\n'),
 
+    [
+      'var foo, bar;',
+      'foo = this;',
+      'bar = foo;',
+      'foo._somethingPrivate;'
+    ].join('\n')
+
     // [
     //   'var that = this;',
     //   'setTimeout(function () {',
