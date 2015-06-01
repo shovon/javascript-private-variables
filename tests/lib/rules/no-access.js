@@ -35,7 +35,14 @@ eslintTester.addRuleTest('lib/rules/no-access', {
       '  console.log("blah, blah")',
       '}',
       'self._something'
-    ].join('\n');
+    ].join('\n'),
+
+    [
+      'foo(function () {',
+      '  var self = this;',
+      '  self._something',
+      '});'
+    ].join('\n'),
 
     // [
     //   'var self = this;',
