@@ -3,6 +3,6 @@ module.exports = {
     "no-access": require('./lib/rules/no-access')
   },
   rulesConfig: {
-    "no-access": 1
+    "no-access": 2
   }
 };
