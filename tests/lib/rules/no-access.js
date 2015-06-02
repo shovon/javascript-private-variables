@@ -1,5 +1,6 @@
 'use strict';
 
+require('babel-eslint');
 var linter = require('eslint').linter;
 var ESLintTester = require('eslint-tester');
 
@@ -101,7 +102,26 @@ eslintTester.addRuleTest('lib/rules/no-access', {
       '    self._another;',
       '  });',
       '});'
-    ].join('\n')
+    ].join('\n'),
+
+    {
+      code: [
+        'let that = this;',
+        'foo(function () {',
+        '  that._value = 10;',
+        '});',
+      ].join('\n'),
+      parser: 'babel-eslint'
+    },
+    {
+      code: [
+        'const that = this;',
+        'foo(function () {',
+        '  that._value = 10;',
+        '});',
+      ].join('\n'),
+      parser: 'babel-eslint'
+    }
   ],
 
   invalid: [
