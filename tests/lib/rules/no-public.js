@@ -42,6 +42,48 @@ eslintTester.addRuleTest('lib/rules/no-public', {
         '}'
       ].join('\n'),
       parser: 'babel-eslint'
+    },
+
+    {
+      code: [
+        'var foo = {',
+        '  get something() { return this._something; },',
+        '  set something(x) { this._something = x; },',
+        '  doSomething() {',
+        '    var self = this',
+        '    self.something = 10;',
+        '  }',
+        '}'
+      ].join('\n'),
+      parser: 'babel-eslint'
+    },
+    {
+      code: [
+        'class Foo {',
+        '  get something() { return this._something; }',
+        '  set something(x) { this._something = x; }',
+        '  doSomething() {',
+        '    var self = this;',
+        '    self.something = 10;',
+        '  }',
+        '}'
+      ].join('\n'),
+      parser: 'babel-eslint'
+    },
+    {
+      code: [
+        'class Foo {',
+        '  get something() { return this._something; }',
+        '  set something(x) { this._something = x; }',
+        '  doSomething() {',
+        '    var self = this;',
+        '    foo(function () {',
+        '      self.something = 10;',
+        '    });',
+        '  }',
+        '}'
+      ].join('\n'),
+      parser: 'babel-eslint'
     }
   ],
 
@@ -65,6 +107,20 @@ eslintTester.addRuleTest('lib/rules/no-public', {
       errors: [
         { message: 'Only allowed to modify private variables' }
       ]
+    },
+
+    {
+      code: [
+        'class Foo {',
+        '  method() {',
+        '    this.somevalue = 10;',
+        '  }',
+        '}'
+      ].join('\n'),
+      errors: [
+        { message: 'Only allowed to modify private variables' }
+      ],
+      parser: 'babel-eslint'
     }
   ]
 });
