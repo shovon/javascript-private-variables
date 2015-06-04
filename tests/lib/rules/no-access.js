@@ -59,70 +59,71 @@ eslintTester.addRuleTest('lib/rules/no-access', {
       'foo._somethingPrivate;'
     ].join('\n'),
 
-    // [
-    //   'var foo = this;',
-    //   'var bar = foo;',
-    //   'bar._somethingPrivate;'
-    // ].join('\n'),
+    [
+      'var foo = this;',
+      'var bar = foo;',
+      'bar._somethingPrivate;'
+    ].join('\n'),
 
-    // [
-    //   'var foo;',
-    //   'foo = this;',
-    //   'foo._somethingPrivate;'
-    // ].join('\n'),
+    [
+      'var foo;',
+      'foo = this;',
+      'foo._somethingPrivate;'
+    ].join('\n'),
 
-    // [
-    //   'var foo, bar;',
-    //   'foo = this;',
-    //   'bar = foo;',
-    //   'foo._somethingPrivate;'
-    // ].join('\n'),
+    [
+      'var foo, bar;',
+      'foo = this;',
+      'bar = foo;',
+      'foo._somethingPrivate;'
+    ].join('\n'),
 
-    // [
-    //   'var that = this;',
-    //   'setTimeout(function () {',
-    //   '  that._something;',
-    //   '});'
-    // ].join('\n'),
+    [
+      'var that = this;',
+      'setTimeout(function () {',
+      '  that._something;',
+      '});'
+    ].join('\n'),
 
-    // [
-    //   'var that = this;',
-    //   '(function () {',
-    //   '  that._something;',
-    //   '}());'
-    // ].join('\n'),
+    [
+      'var that = this;',
+      '(function () {',
+      '  that._something;',
+      '}());'
+    ].join('\n'),
 
-    // [
-    //   'var that = this;',
-    //   'foo(function () {',
-    //   '  that._something;',
-    //   '  that._value = 10;',
-    //   '  var self;',
-    //   '  self = this;',
-    //   '  foo(function () {',
-    //   '    self._another;',
-    //   '  });',
-    //   '});'
-    // ].join('\n'),
+    [
+      'var that = this;',
+      'foo(function () {',
+      '  that._something;',
+      '  that._value = 10;',
+      '  var self;',
+      '  self = this;',
+      '  foo(function () {',
+      '    self._another;',
+      '  });',
+      '});'
+    ].join('\n'),
 
-    // {
-    //   code: [
-    //     'let that = this;',
-    //     'foo(function () {',
-    //     '  that._value = 10;',
-    //     '});',
-    //   ].join('\n'),
-    //   parser: 'babel-eslint'
-    // },
-    // {
-    //   code: [
-    //     'const that = this;',
-    //     'foo(function () {',
-    //     '  that._value = 10;',
-    //     '});',
-    //   ].join('\n'),
-    //   parser: 'babel-eslint'
-    // }
+    {
+      code: [
+        'let that = this;',
+        'foo(function () {',
+        '  that._value = 10;',
+        '});',
+      ].join('\n'),
+      parser: 'babel-eslint'
+    },
+
+    {
+      code: [
+        'const that = this;',
+        'foo(function () {',
+        '  that._value = 10;',
+        '});',
+      ].join('\n'),
+      parser: 'babel-eslint'
+    }
   ],
 
   invalid: [
