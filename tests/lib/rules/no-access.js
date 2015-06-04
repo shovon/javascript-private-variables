@@ -8,6 +8,7 @@ var eslintTester = new ESLintTester(linter);
 eslintTester.addRuleTest('lib/rules/no-access', {
   valid: [
     'var obj = { _someValue: "foo" };',
+
     [
       'var obj = {',
         '_someValue: "foo",',
@@ -113,6 +114,7 @@ eslintTester.addRuleTest('lib/rules/no-access', {
       ].join('\n'),
       parser: 'babel-eslint'
     },
+
     {
       code: [
         'const that = this;',
@@ -136,6 +138,13 @@ eslintTester.addRuleTest('lib/rules/no-access', {
       code: 'something._value;',
       errors: [
         { message: 'Accessing property "_value" of non-this identifier "something" not allowed' }
+      ]
+    },
+
+    {
+      code: 'something.another._value;',
+      errors: [
+        { message: 'Accessing property "_value" of non-this object not allowed' }
       ]
     },
 
@@ -166,6 +175,19 @@ eslintTester.addRuleTest('lib/rules/no-access', {
         'var self = this;',
         'self = "something else";',
         'self._somethingPrivate;'
+      ].join('\n'),
+      errors: [
+        { message: 'Accessing property "_somethingPrivate" of non-this identifier "self" not allowed' }
+      ]
+    },
+
+    {
+      code: [
+        'var self = this;',
+        'fooFunc(function () {',
+        '  self = "something else";',
+        '  self._somethingPrivate;',
+        '});'
       ].join('\n'),
       errors: [
         { message: 'Accessing property "_somethingPrivate" of non-this identifier "self" not allowed' }
