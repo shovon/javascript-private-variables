@@ -192,6 +192,33 @@ eslintTester.addRuleTest('lib/rules/no-access', {
       errors: [
         { message: 'Accessing property "_somethingPrivate" of non-this identifier "self" not allowed' }
       ]
+    },
+
+    {
+      code: [
+        'class Foo {',
+        '  foo() {',
+        '    this._something = 10;',
+        '  }',
+        '}',
+
+        'function fooFunc(cb) {',
+        '  // ...',
+        '  cb();',
+        '}',
+
+        'let foo = this;',
+
+        'fooFunc(function () {',
+        '  var somethingElse;',
+        '  somethingElse._something = 20;',
+        '}, 100);'
+
+      ].join('\n'),
+      parser: 'babel-eslint',
+      errors: [
+        { message: 'Accessing property "_something" of non-this identifier "somethingElse" not allowed' }
+      ]
     }
   ]
 });
