@@ -160,6 +160,50 @@ eslintTester.addRuleTest('lib/rules/no-access', {
         'const foo = new Foo();'
       ].join('\n'),
       parser: 'babel-eslint'
+    },
+
+    {
+      code: [
+        'class Foo {',
+        '  constructor() {',
+        '    this._something = 10;',
+        '  }',
+        '  someMethod() {',
+        '    this._someWhatever = 20;',
+        '  }',
+        '}',
+        'const foo = new Foo();'
+      ].join('\n'),
+      parser: 'babel-eslint',
+      args: [2, 'class-only']
+    },
+
+    {
+      code: [
+        'function Foo() {',
+        '  this._something = 10;',
+        '}',
+        'Foo.prototype.someMethod = function () {',
+        '  this._someWhatever = 20;',
+        '};',
+        'var foo = new Foo();'
+      ].join('\n'),
+      args: [2, 'class-only']
+    },
+
+    {
+      code: [
+        'function Foo() {',
+        '  this._something = 10;',
+        '}',
+        'Foo.prototype = {',
+        '  someMethod: function () {',
+        '    this._someWhatever = 20;',
+        '  }',
+        '};',
+        'var foo = new Foo();'
+      ].join('\n'),
+      args: [2, 'class-only']
     }
   ],
 
