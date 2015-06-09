@@ -180,11 +180,99 @@ eslintTester.addRuleTest('lib/rules/no-access', {
 
     {
       code: [
+        'class Foo {',
+        '  constructor() {',
+        '    this._something = 10;',
+        '  }',
+        '  someMethod() {',
+        '    if (condition) {',
+        '      this._someWhatever = 20;',
+        '    }',
+        '  }',
+        '}',
+        'const foo = new Foo();'
+      ].join('\n'),
+      parser: 'babel-eslint',
+      args: [2, 'class-only']
+    },
+
+    {
+      code: [
+        'class Foo {',
+        '  constructor() {',
+        '    if (condition) {',
+        '      this._something = 10;',
+        '    }',
+        '  }',
+        '  someMethod() {',
+        '    this._someWhatever = 20;',
+        '  }',
+        '}',
+        'const foo = new Foo();'
+      ].join('\n'),
+      parser: 'babel-eslint',
+      args: [2, 'class-only']
+    },
+
+    {
+      code: [
+        'class Foo {',
+        '  constructor() {',
+        '    if (condition)',
+        '      this._something = 10;',
+        '  }',
+        '  someMethod() {',
+        '    this._someWhatever = 20;',
+        '  }',
+        '}',
+        'const foo = new Foo();'
+      ].join('\n'),
+      parser: 'babel-eslint',
+      args: [2, 'class-only']
+    },
+
+    {
+      code: [
+        'class Foo {',
+        '  constructor() {',
+        '    if (condition) {',
+        '      this._something = 10;',
+        '    }',
+        '  }',
+        '  someMethod() {',
+        '    if (condition) {',
+        '      this._someWhatever = 20;',
+        '    }',
+        '  }',
+        '}',
+        'const foo = new Foo();'
+      ].join('\n'),
+      parser: 'babel-eslint',
+      args: [2, 'class-only']
+    },
+
+    {
+      code: [
         'function Foo() {',
         '  this._something = 10;',
         '}',
         'Foo.prototype.someMethod = function () {',
         '  this._someWhatever = 20;',
+        '};',
+        'var foo = new Foo();'
+      ].join('\n'),
+      args: [2, 'class-only']
+    },
+
+    {
+      code: [
+        'function Foo() {',
+        '  this._something = 10;',
+        '}',
+        'Foo.prototype.someMethod = function () {',
+        '  if (condition) {',
+        '    this._someWhatever = 20;',
+        '  }',
         '};',
         'var foo = new Foo();'
       ].join('\n'),
@@ -204,7 +292,25 @@ eslintTester.addRuleTest('lib/rules/no-access', {
         'var foo = new Foo();'
       ].join('\n'),
       args: [2, 'class-only']
+    },
+
+    {
+      code: [
+        'function Foo() {',
+        '  this._something = 10;',
+        '}',
+        'Foo.prototype = {',
+        '  someMethod: function () {',
+        '    if (condition) {',
+        '      this._someWhatever = 20;',
+        '    }',
+        '  }',
+        '};',
+        'var foo = new Foo();'
+      ].join('\n'),
+      args: [2, 'class-only']
     }
+
   ],
 
   invalid: [
