@@ -1,14 +1,10 @@
-# Private variables for JavaScript (`private-variables`)
+# Private variables for JavaScript
 
 Be one step closer to program correctness, by actually throwing errors when accessing private variables in JavaScript, before even running any of your programs!
 
 <h3 align="center">
 <a href="#">Demo</a>
 </h3>
-
-## How Does it Work?
-
-In order
 
 ## Getting started
 
