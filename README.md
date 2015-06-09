@@ -3,7 +3,7 @@
 Be one step closer to program correctness, by actually throwing errors when accessing private variables in JavaScript, before even running any of your programs!
 
 <h3 align="center">
-[Demo](/#)
+<a href="#">Demo</a>
 </h3>
 
 ## How Does it Work?
