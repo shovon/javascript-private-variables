@@ -1,6 +1,6 @@
 # Private variables for JavaScript
 
-Be one step closer to program correctness, by actually throwing errors when accessing private variables in JavaScript, before even running any of your programs!
+Precede member variable names with an underscore, and **get private variables**. Now comes with actual errors, bringing you one step closer to program correctness!
 
 <h3 align="center">
 <a href="#">Demo</a>
@@ -8,37 +8,7 @@ Be one step closer to program correctness, by actually throwing errors when acce
 
 ## Getting started
 
-Be sure that you have installed Node.js/io.js along with npm.
-
-In a new folder, create a `package.json` file with the following content in it:
-
-```json
-{
-  "scripts": { "lint": "eslint ./*.js" },
-  "eslintConfig": {
-    "parser": "babel-eslint",
-    "env": { "node": true },
-    "plugins": [ "privacy" ],
-    "rules": {
-      "no-console": false,
-      "quotes": [ 2, "single" ],
-      "strict": [ 2, "never" ],
-      "no-underscore-dangle": false,
-      "privacy/no-access": [2, "class-only"]
-    }
-  },
-  "devDependencies": {
-    "babel-eslint": "^3.1.14",
-    "eslint": "^0.22.1"
-  }
-}
-```
-
-Then, add some JavaScript code in the root of the new folder. As a quick start, create a new `example.js` file, and paste in the following code:
-
-```javascript
-
-```
+WIP
 
 ## Rule Accessing Property With Leading Underscore (no-access)
 
