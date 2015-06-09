@@ -191,20 +191,20 @@ eslintTester.addRuleTest('lib/rules/no-access', {
       args: [2, 'class-only']
     },
 
-    // {
-    //   code: [
-    //     'function Foo() {',
-    //     '  this._something = 10;',
-    //     '}',
-    //     'Foo.prototype = {',
-    //     '  someMethod: function () {',
-    //     '    this._someWhatever = 20;',
-    //     '  }',
-    //     '};',
-    //     'var foo = new Foo();'
-    //   ].join('\n'),
-    //   args: [2, 'class-only']
-    // }
+    {
+      code: [
+        'function Foo() {',
+        '  this._something = 10;',
+        '}',
+        'Foo.prototype = {',
+        '  someMethod: function () {',
+        '    this._someWhatever = 20;',
+        '  }',
+        '};',
+        'var foo = new Foo();'
+      ].join('\n'),
+      args: [2, 'class-only']
+    }
   ],
 
   invalid: [
