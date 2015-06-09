@@ -309,7 +309,44 @@ eslintTester.addRuleTest('lib/rules/no-access', {
         'var foo = new Foo();'
       ].join('\n'),
       args: [2, 'class-only']
-    }
+    },
+
+    {
+      code: [
+        'class Foo {',
+        '  constructor() {',
+        '    this._something = 10;',
+        '  }',
+        '  someMethod() {',
+        '    var self = this;',
+        '    fooFunc(function (condition) {',
+        '      self._someWhatever = 20;',
+        '    })',
+        '  }',
+        '}',
+        'const foo = new Foo();'
+      ].join('\n'),
+      parser: 'babel-eslint'
+    },
+
+    {
+      code: [
+        'class Foo {',
+        '  constructor() {',
+        '    this._something = 10;',
+        '  }',
+        '  someMethod() {',
+        '    var self = this;',
+        '    fooFunc(function (condition) {',
+        '      self._someWhatever = 20;',
+        '    })',
+        '  }',
+        '}',
+        'const foo = new Foo();'
+      ].join('\n'),
+      parser: 'babel-eslint',
+      args: [2, 'class-only']
+    },
 
   ],
 

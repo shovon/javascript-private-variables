@@ -1,12 +1,48 @@
-# Add private member variables to your code
+# Private variables for JavaScript (`private-variables`)
 
-> All member variable names that start with `_` will be private.
+Be one step closer to program correctness, by actually throwing errors when accessing private variables in JavaScript, before even running any of your programs!
 
-Languages like Python and JavaScript don't have any way to forbid access to specific member variables. And even if there is, it's often only possible through some clever hacks, such as the use of closures. However, this results in code that is cumbersome to debug, and worse, too much garbage generated from the use of closures.
+<h3 align="center">
+[Demo](#)
+</h3>
 
-A better solution would be to run the code against a linter, and check and see if the programmer is illegally accessing member variables of an object that have underscores on them.
+## How Does it Work?
 
-This is where `eslint-plugin-privacy` comes in. JavaScript programmers have been prepending a single underscore to member variable names in order to denote that it is private. `eslint-plugin-privacy` enforces that habit, by making sure that a linting error is thrown when a programmer is trying to access a member variable of an object that has a leading underscore.
+In order
+
+## Getting started
+
+Be sure that you have installed Node.js/io.js along with npm.
+
+In a new folder, create a `package.json` file with the following content in it:
+
+```json
+{
+  "scripts": { "lint": "eslint ./*.js" },
+  "eslintConfig": {
+    "parser": "babel-eslint",
+    "env": { "node": true },
+    "plugins": [ "privacy" ],
+    "rules": {
+      "no-console": false,
+      "quotes": [ 2, "single" ],
+      "strict": [ 2, "never" ],
+      "no-underscore-dangle": false,
+      "privacy/no-access": [2, "class-only"]
+    }
+  },
+  "devDependencies": {
+    "babel-eslint": "^3.1.14",
+    "eslint": "^0.22.1"
+  }
+}
+```
+
+Then, add some JavaScript code in the root of the new folder. As a quick start, create a new `example.js` file, and paste in the following code:
+
+```javascript
+
+```
 
 ## Rule Accessing Property With Leading Underscore (no-access)
 
