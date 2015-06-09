@@ -13,7 +13,7 @@ eslintTester.addRuleTest('lib/rules/no-access', {
       'var obj = {',
         '_someValue: "foo",',
         'method: function () {',
-          'return this._someValue;',
+        '  return this._someValue;',
         '}',
       '};',
       'obj.method()'
@@ -191,20 +191,20 @@ eslintTester.addRuleTest('lib/rules/no-access', {
       args: [2, 'class-only']
     },
 
-    {
-      code: [
-        'function Foo() {',
-        '  this._something = 10;',
-        '}',
-        'Foo.prototype = {',
-        '  someMethod: function () {',
-        '    this._someWhatever = 20;',
-        '  }',
-        '};',
-        'var foo = new Foo();'
-      ].join('\n'),
-      args: [2, 'class-only']
-    }
+    // {
+    //   code: [
+    //     'function Foo() {',
+    //     '  this._something = 10;',
+    //     '}',
+    //     'Foo.prototype = {',
+    //     '  someMethod: function () {',
+    //     '    this._someWhatever = 20;',
+    //     '  }',
+    //     '};',
+    //     'var foo = new Foo();'
+    //   ].join('\n'),
+    //   args: [2, 'class-only']
+    // }
   ],
 
   invalid: [
@@ -299,6 +299,17 @@ eslintTester.addRuleTest('lib/rules/no-access', {
       parser: 'babel-eslint',
       errors: [
         { message: 'Accessing property "_something" of non-this identifier "somethingElse" not allowed' }
+      ]
+    },
+
+    {
+      code: [
+        'this._something = 10;'
+      ].join('\n'),
+      parser: 'babel-eslint',
+      args: [2, 'class-only'],
+      errors: [
+        { message: '"This" not instance of any class' }
       ]
     }
   ]
