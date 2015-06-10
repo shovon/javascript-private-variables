@@ -337,7 +337,7 @@ eslintTester.addRuleTest('lib/rules/no-access', {
         '  }',
         '  someMethod() {',
         '    var self = this;',
-        '    fooFunc(function (condition) {',
+        '    fooFunc(function () {',
         '      self._someWhatever = 20;',
         '    })',
         '  }',
@@ -347,6 +347,20 @@ eslintTester.addRuleTest('lib/rules/no-access', {
       parser: 'babel-eslint',
       args: [2, 'class-only']
     },
+
+    {
+      code: [
+        'class Foo {',
+        '  someMethod() {',
+        '    fooFunc(function () {',
+        '      this._something = 10;',
+        '    }.bind(this));',
+        '  }',
+        '}'
+      ].join('\n'),
+      parser: 'babel-eslint',
+      args: [2, 'class-only']
+    }
 
   ],
 
@@ -448,6 +462,23 @@ eslintTester.addRuleTest('lib/rules/no-access', {
     {
       code: [
         'this._something = 10;'
+      ].join('\n'),
+      parser: 'babel-eslint',
+      args: [2, 'class-only'],
+      errors: [
+        { message: '"This" not instance of any class' }
+      ]
+    },
+
+    {
+      code: [
+        'class Foo {',
+        '  someMethod() {',
+        '    fooFunc(function () {',
+        '      this._something = 10;',
+        '    });',
+        '  }',
+        '}',
       ].join('\n'),
       parser: 'babel-eslint',
       args: [2, 'class-only'],

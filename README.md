@@ -1,4 +1,4 @@
-# Private variables for JavaScript
+# Private Variables for JavaScript
 
 Precede member variable names with an underscore, and **get private variables**. Now comes with actual errors, bringing you one step closer to program correctness!
 
