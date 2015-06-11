@@ -1,7 +1,7 @@
 {
-  "name": "eslint-plugin-privacy",
+  "name": "eslint-plugin-private-variables",
   "desciption": "Add private member variables to your JavaScript code",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "keywords": [
     "eslint",
     "eslintplugin",
@@ -9,14 +9,14 @@
     "es6",
     "good-practices"
   ],
-  "homepage": "https://github.com/shovon/eslint-plugin-privacy",
+  "homepage": "https://github.com/shovon/javascript-private-variables",
   "author": "Salehen Shovon Rahman <sal@linux.com> (http://shovon.github.io)",
   "repository": {
     "type": "git",
-    "url": "git://github.com/shovon/eslint-plugin-privacy"
+    "url": "git://github.com/shovon/javascript-private-variables.git"
   },
   "bugs": {
-    "url": "https://github.com/shovon/eslint-plugin-privacy/issues"
+    "url": "https://github.com/shovon/javascript-private-variables/issues"
   },
   "license": "MIT",
   "main": "./index.js",
