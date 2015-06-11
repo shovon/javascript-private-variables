@@ -1,7 +1,7 @@
 {
   "name": "eslint-plugin-private-variables",
   "desciption": "Add private member variables to your JavaScript code",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "keywords": [
     "eslint",
     "eslintplugin",
